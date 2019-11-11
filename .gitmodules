@@ -1,0 +1,6 @@
+[submodule "api"]
+	path = api
+	url = git@github.com:Brassoe/intend.git
+[submodule "app"]
+	path = app
+	url = git@github.com:Brassoe/intendFrontend.git
