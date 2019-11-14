@@ -19,6 +19,7 @@ services:
             - "DB_PORT=3306"
             - "DB_HOST=db"
             - "DB_CONNECTION=mysql"
+        command: bash -c "docker-php-ext-install pdo pdo_mysql && php-fpm"
     srv:
         image: nginx
         ports:
