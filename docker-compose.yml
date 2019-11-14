@@ -3,6 +3,7 @@ version: "3"
 services:
     app:
         image: node
+        container_name: app-container
         working_dir: /usr/src/service
         volumes:
             - ./app/intend-pwa:/usr/src/service
@@ -12,6 +13,7 @@ services:
         command: bash -c "npm install && npm run serve"
     api:
         image: php:fpm
+        container_name: api-container
         working_dir: /var/www
         volumes:
             - ./api:/var/www
@@ -22,6 +24,7 @@ services:
         command: bash -c "docker-php-ext-install pdo pdo_mysql && php-fpm"
     srv:
         image: nginx
+        container_name: srv-container
         ports:
             - 8080:8080
         volumes:
@@ -29,6 +32,7 @@ services:
             - ./conf.d:/etc/nginx/conf.d
     db:
         image: mysql:5.7
+        container_name: db-container
         ports:
             - 3306:3306
         volumes:
