@@ -21,7 +21,7 @@ composer_autoload() {
 }
 
 reset_db() {
-	docker exec -it api-container php artisan migrate:fresh --seed
+	docker exec -it api-container php artisan --force migrate:fresh --seed
 }
 
 quit_disgracefully() { # internal method
