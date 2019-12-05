@@ -4,6 +4,10 @@ api() {
 	docker exec -it api-container bash
 }
 
+install() {
+	docker exec -it api-container bash -c "php app/Install.php"
+}
+
 db() {
 	docker exec -it db-container mysql -u root --password="admin" intend
 }
@@ -36,6 +40,8 @@ $(basename $0) - runs various convenience commands
 Usage:
 	--api
 		Runs Bash in the API container
+	-i
+		Installs any modules not currently in the database
 	-a | -v | --app | --vue
 		Runs Bash in the app container
 	-c | --ca | --composer | --composer-autoload
@@ -56,6 +62,8 @@ main() {
 	case $1 in
 		--api)
 			FUNC="api";;
+		-i)
+			FUNC="install";;
 		-a | -v | --app | --vue)
 			FUNC="app";;
 		-c | --ca | --composer | --composer-autoload)
